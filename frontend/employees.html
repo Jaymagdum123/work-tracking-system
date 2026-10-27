@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WorkTrack | Employees</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-brand">
+                <div class="brand-mark">
+                    <i class="bi bi-buildings"></i>
+                </div>
+
+                <div>
+                    <strong>WorkTrack</strong>
+                    <small>Manufacturing OS</small>
+                </div>
+            </div>
+
+            <div class="nav-label">MAIN</div>
+
+            <nav>
+
+                <a class="nav-link" href="dashboard.html">
+                    <i class="bi bi-grid-1x2"></i> Dashboard
+                </a>
+
+                <a class="nav-link active" href="employees.html">
+                    <i class="bi bi-people"></i> Employees
+                </a>
+
+                <a class="nav-link" href="departments.html">
+                    <i class="bi bi-diagram-3"></i> Departments
+                </a>
+
+                <a class="nav-link" href="work.html">
+                    <i class="bi bi-clipboard-check"></i> Work Assignment
+                </a>
+
+                <a class="nav-link" href="progress.html">
+                    <i class="bi bi-bar-chart-line"></i> Work Progress
+                </a>
+
+                <a class="nav-link" href="attendance.html">
+                    <i class="bi bi-calendar2-check"></i> Attendance
+                </a>
+
+                <a class="nav-link" href="production.html">
+                    <i class="bi bi-box-seam"></i> Production
+                </a>
+
+                <a class="nav-link" href="reports.html">
+                    <i class="bi bi-file-earmark-bar-graph"></i> Reports
+                </a>
+
+            </nav>
+
+            <div class="nav-label mt-3">ACCOUNT</div>
+
+            <nav>
+
+                <a class="nav-link" href="profile.html">
+                    <i class="bi bi-person-circle"></i> My Profile
+                </a>
+
+                <a class="nav-link logout" href="index.html">
+                    <i class="bi bi-box-arrow-left"></i> Logout
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="mini-avatar">JM</div>
+
+                <div>
+                    <strong>Jay Maruti Magdum</strong>
+                    <small>Administrator</small>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+        <main class="main">
+
+            <!-- TOPBAR -->
+            <header class="topbar">
+
+                <button class="icon-btn d-lg-none" id="menuBtn">
+                    <i class="bi bi-list"></i>
+                </button>
+
+                <div>
+                    <h5 class="mb-0">Employees</h5>
+                    <span class="top-subtitle">
+                        Manage your workforce and employee information.
+                    </span>
+                </div>
+
+                <div class="top-actions">
+
+                    <button class="icon-btn" onclick="showToast('No new notifications')">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+                    <div class="user-menu">
+
+                        <div class="avatar">JM</div>
+
+                        <div class="d-none d-md-block">
+                            <strong>Jay Magdum</strong>
+                            <small>Administrator</small>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- CONTENT -->
+            <section class="content">
+
+                <div class="page-title">
+
+                    <div>
+
+                        <span class="eyebrow">WORKTRACK</span>
+
+                        <h1>Employees</h1>
+
+                        <p class="muted">
+                            Manage your workforce and employee information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TOOLBAR -->
+                <div class="toolbar">
+
+                    <div class="search-box">
+
+                        <i class="bi bi-search"></i>
+
+                        <input type="text" id="employeeSearch" placeholder="Search employees...">
+
+                    </div>
+
+
+                    <div class="d-flex gap-2">
+
+                        <!-- IMPORT -->
+                        <button class="btn btn-light" onclick="document.getElementById('employeeImport').click()">
+                            <i class="bi bi-upload me-2"></i>
+                            Import
+                        </button>
+
+                        <input type="file" id="employeeImport" accept=".csv" hidden onchange="importEmployees(this)">
+
+
+                        <!-- ADD -->
+                        <button class="btn btn-primary" onclick="openEmployeeModal()">
+                            <i class="bi bi-plus-lg me-2"></i>
+                            Add Employee
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMPLOYEE PANEL -->
+                <div class="panel">
+
+                    <div class="panel-head">
+
+                        <div>
+
+                            <h5>Employee Directory</h5>
+
+                            <p id="employeeCount">
+                                Loading employees...
+                            </p>
+
+                        </div>
+
+                        <button class="btn btn-light btn-sm" onclick="exportEmployees()">
+                            <i class="bi bi-download me-1"></i>
+                            Export
+                        </button>
+
+                    </div>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table align-middle" id="employeeTable">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>Employee</th>
+
+                                    <th>Employee ID</th>
+
+                                    <th>Department</th>
+
+                                    <th>Role</th>
+
+                                    <th>Contact</th>
+
+                                    <th>Status</th>
+
+                                    <th></th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="employeeTableBody">
+
+                                <tr>
+
+                                    <td colspan="7" class="text-center py-4">
+                                        Loading employees...
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ADD EMPLOYEE MODAL -->
+                <div class="modal fade" id="employeeModal" tabindex="-1">
+
+                    <div class="modal-dialog modal-dialog-centered">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+
+                                <h5 class="modal-title">
+                                    Add Employee
+                                </h5>
+
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                            </div>
+
+
+                            <div class="modal-body">
+
+                                <form id="employeeForm">
+
+                                    <div class="row g-3">
+
+                                        <div class="col-md-6">
+
+                                            <label class="form-label">
+                                                Full Name
+                                            </label>
+
+                                            <input type="text" id="employeeName" class="form-control"
+                                                placeholder="Enter name" required>
+
+                                        </div>
+
+
+                                        <div class="col-md-6">
+
+                                            <label class="form-label">
+                                                Employee ID
+                                            </label>
+
+                                            <input type="text" id="employeeCode" class="form-control"
+                                                placeholder="EMP-005" required>
+
+                                        </div>
+
+
+                                        <div class="col-md-6">
+
+                                            <label class="form-label">
+                                                Department
+                                            </label>
+
+                                            <select id="employeeDepartment" class="form-select" required>
+
+                                                <option value="">
+                                                    Loading departments...
+                                                </option>
+
+                                            </select>
+
+                                        </div>
+
+
+                                        <div class="col-md-6">
+
+                                            <label class="form-label">
+                                                Role
+                                            </label>
+
+                                            <input type="text" id="employeeRole" class="form-control"
+                                                placeholder="Operator" required>
+
+                                        </div>
+
+
+                                        <div class="col-md-6">
+
+                                            <label class="form-label">
+                                                Phone
+                                            </label>
+
+                                            <input type="text" id="employeePhone" class="form-control"
+                                                placeholder="10-digit mobile number" required>
+
+                                        </div>
+
+
+                                        <div class="col-md-6">
+
+                                            <label class="form-label">
+                                                Email
+                                            </label>
+
+                                            <input type="email" id="employeeEmail" class="form-control"
+                                                placeholder="employee@example.com">
+
+                                        </div>
+
+
+                                        <div class="col-md-6">
+
+                                            <label class="form-label">
+                                                Status
+                                            </label>
+
+                                            <select id="employeeStatus" class="form-select">
+
+                                                <option value="Active">
+                                                    Active
+                                                </option>
+
+                                                <option value="Inactive">
+                                                    Inactive
+                                                </option>
+
+                                                <option value="On Leave">
+                                                    On Leave
+                                                </option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+
+                                <button type="button" class="btn btn-primary" onclick="saveEmployee()">
+                                    Save Employee
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- IMPORT MODAL -->
+                <div class="modal fade" id="importModal" tabindex="-1">
+
+                    <div class="modal-dialog modal-dialog-centered">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+
+                                <h5 class="modal-title">
+                                    Import Employees
+                                </h5>
+
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                            </div>
+
+
+                            <div class="modal-body">
+
+                                <p class="mb-3">
+                                    Select a CSV file containing employee records.
+                                </p>
+
+                                <div class="alert alert-light border">
+
+                                    <strong>CSV columns:</strong>
+
+                                    <div class="mt-2 small">
+                                        employee_code, full_name, email,
+                                        department, role, phone, status
+                                    </div>
+
+                                </div>
+
+                                <button class="btn btn-outline-primary btn-sm" onclick="downloadImportTemplate()">
+                                    <i class="bi bi-download me-1"></i>
+                                    Download CSV Template
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <div id="toastBox" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/script.js"></script>
+
+
+    <script>
+
+        /* ================================
+           EMPLOYEE MODULE
+        ================================ */
+
+
+        /* Load employees */
+
+        async function loadEmployees() {
+
+            try {
+
+                const response = await fetch('/api/employees');
+
+                const result = await response.json();
+
+                if (!result.success) {
+
+                    showToast(result.message || 'Failed to load employees');
+
+                    return;
+                }
+
+                renderEmployees(result.data);
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast('Failed to load employees.');
+
+            }
+
+        }
+
+
+        /* Render employees */
+
+        function renderEmployees(employees) {
+
+            const tbody =
+                document.getElementById('employeeTableBody');
+
+            const count =
+                document.getElementById('employeeCount');
+
+
+            count.textContent =
+                employees.length + ' employees in the system';
+
+
+            if (!employees.length) {
+
+                tbody.innerHTML = `
+            <tr>
+                <td colspan="7" class="text-center py-4">
+                    No employees found.
+                </td>
+            </tr>
+        `;
+
+                return;
+
+            }
+
+
+            tbody.innerHTML = employees.map(employee => {
+
+                const initials =
+                    employee.full_name
+                        .split(' ')
+                        .map(x => x[0])
+                        .slice(0, 2)
+                        .join('')
+                        .toUpperCase();
+
+
+                return `
+
+            <tr>
+
+                <td>
+
+                    <div class="person">
+
+                        <span class="table-avatar">
+                            ${initials}
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                ${escapeHtml(employee.full_name)}
+                            </strong>
+
+                            <small>
+                                ${escapeHtml(employee.email || '')}
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </td>
+
+
+                <td>
+                    ${escapeHtml(employee.employee_code)}
+                </td>
+
+
+                <td>
+                    ${escapeHtml(employee.department)}
+                </td>
+
+
+                <td>
+                    ${escapeHtml(employee.role)}
+                </td>
+
+
+                <td>
+                    ${escapeHtml(employee.phone)}
+                </td>
+
+
+                <td>
+
+                    <span class="status ${employee.status === 'Active'
+                        ? 'green-status'
+                        : 'yellow-status'
+                    }">
+
+                        ${escapeHtml(employee.status)}
+
+                    </span>
+
+                </td>
+
+
+                <td>
+
+                    <button
+                        class="icon-btn-sm"
+                        onclick="deleteEmployee(${employee.id})"
+                        title="Delete employee"
+                    >
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `;
+
+            }).join('');
+
+        }
+
+
+        /* Load departments dynamically */
+
+        async function loadDepartments() {
+
+            const select =
+                document.getElementById('employeeDepartment');
+
+
+            try {
+
+                const response =
+                    await fetch('/api/departments');
+
+
+                const result =
+                    await response.json();
+
+
+                if (!result.success) {
+
+                    select.innerHTML =
+                        '<option value="">Unable to load departments</option>';
+
+                    return;
+
+                }
+
+
+                if (!result.data.length) {
+
+                    select.innerHTML =
+                        '<option value="">No departments available</option>';
+
+                    return;
+
+                }
+
+
+                select.innerHTML =
+                    '<option value="">Select Department</option>';
+
+
+                result.data.forEach(department => {
+
+                    const option =
+                        document.createElement('option');
+
+                    option.value =
+                        department.name;
+
+                    option.textContent =
+                        department.name;
+
+                    select.appendChild(option);
+
+                });
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                select.innerHTML =
+                    '<option value="">Unable to load departments</option>';
+
+            }
+
+        }
+
+
+        /* Open Add Employee modal */
+
+        async function openEmployeeModal() {
+
+            document
+                .getElementById('employeeForm')
+                .reset();
+
+
+            await loadDepartments();
+
+
+            const modal =
+                new bootstrap.Modal(
+                    document.getElementById('employeeModal')
+                );
+
+
+            modal.show();
+
+        }
+
+
+        /* Save employee */
+
+        async function saveEmployee() {
+
+            const data = {
+
+                full_name:
+                    document.getElementById('employeeName').value.trim(),
+
+                employee_code:
+                    document.getElementById('employeeCode').value.trim(),
+
+                department:
+                    document.getElementById('employeeDepartment').value,
+
+                role:
+                    document.getElementById('employeeRole').value.trim(),
+
+                phone:
+                    document.getElementById('employeePhone').value.trim(),
+
+                email:
+                    document.getElementById('employeeEmail').value.trim(),
+
+                status:
+                    document.getElementById('employeeStatus').value
+
+            };
+
+
+            if (
+                !data.full_name ||
+                !data.employee_code ||
+                !data.department ||
+                !data.role ||
+                !data.phone
+            ) {
+
+                showToast('Please fill all required employee fields.');
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch('/api/employees', {
+
+                        method: 'POST',
+
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+
+                        body: JSON.stringify(data)
+
+                    });
+
+
+                const result =
+                    await response.json();
+
+
+                if (!result.success) {
+
+                    showToast(
+                        result.message || 'Failed to add employee.'
+                    );
+
+                    return;
+
+                }
+
+
+                showToast('Employee added successfully.');
+
+
+                bootstrap
+                    .Modal
+                    .getInstance(
+                        document.getElementById('employeeModal')
+                    )
+                    .hide();
+
+
+                loadEmployees();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast('Request failed.');
+
+            }
+
+        }
+
+
+        /* Delete employee */
+
+        async function deleteEmployee(id) {
+
+            if (
+                !confirm(
+                    'Are you sure you want to delete this employee?'
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        '/api/employees/' + id,
+                        {
+                            method: 'DELETE'
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (!result.success) {
+
+                    showToast(
+                        result.message || 'Failed to delete employee.'
+                    );
+
+                    return;
+
+                }
+
+
+                showToast('Employee deleted successfully.');
+
+                loadEmployees();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast('Request failed.');
+
+            }
+
+        }
+
+
+        /* Import employees from CSV */
+
+        async function importEmployees(input) {
+
+            const file =
+                input.files[0];
+
+
+            if (!file) {
+                return;
+            }
+
+
+            if (
+                !file.name.toLowerCase().endsWith('.csv')
+            ) {
+
+                showToast('Please select a CSV file.');
+
+                input.value = '';
+
+                return;
+
+            }
+
+
+            const formData =
+                new FormData();
+
+            formData.append(
+                'file',
+                file
+            );
+
+
+            try {
+
+                showToast('Importing employees...');
+
+
+                const response =
+                    await fetch(
+                        '/api/employees/import',
+                        {
+                            method: 'POST',
+                            body: formData
+                        }
+                    );
+
+
+                const result =
+                    await response.json();
+
+
+                if (!result.success) {
+
+                    showToast(
+                        result.message || 'Employee import failed.'
+                    );
+
+                    return;
+
+                }
+
+
+                showToast(
+                    result.message ||
+                    'Employees imported successfully.'
+                );
+
+
+                loadEmployees();
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast('Employee import failed.');
+
+            }
+
+
+            input.value = '';
+
+        }
+
+
+        /* Export employees */
+
+        async function exportEmployees() {
+
+            try {
+
+                const response =
+                    await fetch('/api/employees');
+
+
+                const result =
+                    await response.json();
+
+
+                if (!result.success) {
+
+                    showToast('Unable to export employees.');
+
+                    return;
+
+                }
+
+
+                const rows =
+                    result.data;
+
+
+                if (!rows.length) {
+
+                    showToast('No employees available to export.');
+
+                    return;
+
+                }
+
+
+                const headers = [
+                    'employee_code',
+                    'full_name',
+                    'email',
+                    'department',
+                    'role',
+                    'phone',
+                    'status'
+                ];
+
+
+                const csvRows = [
+
+                    headers.join(','),
+
+                    ...rows.map(employee =>
+
+                        headers.map(header => {
+
+                            const value =
+                                employee[header] ?? '';
+
+                            return `"${String(value)
+                                .replace(/"/g, '""')}"`;
+
+                        }).join(',')
+
+                    )
+
+                ];
+
+
+                const blob =
+                    new Blob(
+                        [csvRows.join('\n')],
+                        {
+                            type: 'text/csv;charset=utf-8;'
+                        }
+                    );
+
+
+                const url =
+                    URL.createObjectURL(blob);
+
+
+                const link =
+                    document.createElement('a');
+
+
+                link.href = url;
+
+                link.download =
+                    'employees.csv';
+
+
+                link.click();
+
+
+                URL.revokeObjectURL(url);
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                showToast('Export failed.');
+
+            }
+
+        }
+
+
+        /* CSV template */
+
+        function downloadImportTemplate() {
+
+            const csv =
+                `employee_code,full_name,email,department,role,phone,status
+EMP-005,Sample Employee,sample@worktrack.com,Production,Operator,9876543210,Active
+EMP-006,Another Employee,another@worktrack.com,Quality Control,Inspector,9876543211,Active`;
+
+
+            const blob =
+                new Blob(
+                    [csv],
+                    {
+                        type: 'text/csv;charset=utf-8;'
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(blob);
+
+
+            const link =
+                document.createElement('a');
+
+
+            link.href = url;
+
+            link.download =
+                'employee_import_template.csv';
+
+
+            link.click();
+
+
+            URL.revokeObjectURL(url);
+
+        }
+
+
+        /* Search */
+
+        document
+            .getElementById('employeeSearch')
+            .addEventListener(
+                'input',
+                function () {
+
+                    const value =
+                        this.value.toLowerCase().trim();
+
+
+                    document
+                        .querySelectorAll('#employeeTableBody tr')
+                        .forEach(row => {
+
+                            row.style.display =
+                                row.innerText
+                                    .toLowerCase()
+                                    .includes(value)
+                                    ? ''
+                                    : 'none';
+
+                        });
+
+                }
+            );
+
+
+        /* Escape HTML */
+
+        function escapeHtml(value) {
+
+            return String(value ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+
+        }
+
+
+        /* Initial load */
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            function () {
+
+                loadEmployees();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

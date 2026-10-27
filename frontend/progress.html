@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WorkTrack | Work Progress</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/style.css">
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-mark">
+                    <i class="bi bi-buildings"></i>
+                </div>
+
+                <div>
+                    <strong>WorkTrack</strong>
+                    <small>Manufacturing OS</small>
+                </div>
+
+            </div>
+
+
+            <div class="nav-label">
+                MAIN
+            </div>
+
+
+            <nav>
+
+                <a class="nav-link" href="dashboard.html">
+                    <i class="bi bi-grid-1x2"></i>
+                    Dashboard
+                </a>
+
+
+                <a class="nav-link" href="employees.html">
+                    <i class="bi bi-people"></i>
+                    Employees
+                </a>
+
+
+                <a class="nav-link" href="departments.html">
+                    <i class="bi bi-diagram-3"></i>
+                    Departments
+                </a>
+
+
+                <a class="nav-link" href="work.html">
+                    <i class="bi bi-clipboard-check"></i>
+                    Work Assignment
+                </a>
+
+
+                <a class="nav-link active" href="progress.html">
+                    <i class="bi bi-bar-chart-line"></i>
+                    Work Progress
+                </a>
+
+
+                <a class="nav-link" href="attendance.html">
+                    <i class="bi bi-calendar2-check"></i>
+                    Attendance
+                </a>
+
+
+                <a class="nav-link" href="production.html">
+                    <i class="bi bi-box-seam"></i>
+                    Production
+                </a>
+
+
+                <a class="nav-link" href="reports.html">
+                    <i class="bi bi-file-earmark-bar-graph"></i>
+                    Reports
+                </a>
+
+            </nav>
+
+
+            <div class="nav-label mt-3">
+                ACCOUNT
+            </div>
+
+
+            <nav>
+
+                <a class="nav-link" href="profile.html">
+                    <i class="bi bi-person-circle"></i>
+                    My Profile
+                </a>
+
+
+                <a class="nav-link logout" href="index.html">
+                    <i class="bi bi-box-arrow-left"></i>
+                    Logout
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="mini-avatar">
+                    JM
+                </div>
+
+                <div>
+                    <strong>Jay Maruti Magdum</strong>
+                    <small>Administrator</small>
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- MAIN -->
+
+        <main class="main">
+
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <button class="icon-btn d-lg-none" id="menuBtn">
+                    <i class="bi bi-list"></i>
+                </button>
+
+
+                <div>
+
+                    <h5 class="mb-0">
+                        Work Progress
+                    </h5>
+
+                    <span class="top-subtitle">
+                        Monitor task completion and employee progress.
+                    </span>
+
+                </div>
+
+
+                <div class="top-actions">
+
+                    <button class="icon-btn" onclick="showToast('No new notifications')">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+
+                    <div class="user-menu">
+
+                        <div class="avatar">
+                            JM
+                        </div>
+
+                        <div class="d-none d-md-block">
+
+                            <strong>
+                                Jay Magdum
+                            </strong>
+
+                            <small>
+                                Administrator
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- CONTENT -->
+
+            <section class="content">
+
+
+                <div class="page-title">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            WORKTRACK
+                        </span>
+
+                        <h1>
+                            Work Progress
+                        </h1>
+
+                        <p class="muted">
+                            Monitor task completion and employee progress.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SUMMARY -->
+
+                <div class="row g-3 mb-3">
+
+
+                    <div class="col-md-4">
+
+                        <div class="mini-stat">
+
+                            <span>
+                                Completed
+                            </span>
+
+                            <strong id="completedCount">
+                                0
+                            </strong>
+
+                            <small id="completedPercent">
+                                0% of total tasks
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-md-4">
+
+                        <div class="mini-stat">
+
+                            <span>
+                                In Progress
+                            </span>
+
+                            <strong id="inProgressCount">
+                                0
+                            </strong>
+
+                            <small id="inProgressPercent">
+                                0% of total tasks
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-md-4">
+
+                        <div class="mini-stat">
+
+                            <span>
+                                Pending
+                            </span>
+
+                            <strong id="pendingCount">
+                                0
+                            </strong>
+
+                            <small id="pendingPercent">
+                                0% of total tasks
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PROGRESS PANEL -->
+
+                <div class="panel">
+
+
+                    <div class="panel-head">
+
+
+                        <div>
+
+                            <h5>
+                                Employee Work Progress
+                            </h5>
+
+                            <p>
+                                Track current task completion
+                            </p>
+
+                        </div>
+
+
+                        <div class="d-flex gap-2">
+
+
+                            <div class="search-box">
+
+                                <i class="bi bi-search"></i>
+
+                                <input type="text" id="progressSearch" placeholder="Search...">
+
+                            </div>
+
+
+                            <select class="form-select form-select-sm filter-select" id="departmentFilter">
+
+                                <option value="">
+                                    All Departments
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PROGRESS LIST -->
+
+                    <div class="progress-list" id="progressList">
+
+                        <div class="text-center py-4">
+                            Loading work progress...
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- UPDATE PROGRESS MODAL -->
+
+                <div class="modal fade" id="progressModal" tabindex="-1">
+
+                    <div class="modal-dialog modal-dialog-centered">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+
+                                <h5 class="modal-title">
+                                    Update Work Progress
+                                </h5>
+
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+
+                            </div>
+
+
+                            <div class="modal-body">
+
+                                <input type="hidden" id="progressWorkId">
+
+
+                                <div class="mb-3">
+
+                                    <label class="form-label">
+                                        Employee
+                                    </label>
+
+                                    <input type="text" class="form-control" id="progressEmployee" readonly>
+
+                                </div>
+
+
+                                <div class="mb-3">
+
+                                    <label class="form-label">
+                                        Task
+                                    </label>
+
+                                    <input type="text" class="form-control" id="progressTask" readonly>
+
+                                </div>
+
+
+                                <div class="mb-3">
+
+                                    <label class="form-label">
+                                        Progress
+                                    </label>
+
+                                    <div class="input-group">
+
+                                        <input type="number" class="form-control" id="progressValue" min="0" max="100"
+                                            step="1">
+
+                                        <span class="input-group-text">
+                                            %
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="progress">
+
+                                    <div class="progress-bar" id="progressPreview" style="width: 0%"></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">
+                                    Cancel
+                                </button>
+
+                                <button type="button" class="btn btn-primary" onclick="saveProgress()">
+                                    Save Progress
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+        </main>
+
+
+
+        <div id="toastBox" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+        <script src="assets/script.js"></script>
+
+
+
+        <script>
+
+            /* ==========================================
+               WORK PROGRESS MODULE
+            ========================================== */
+
+
+            let progressData = [];
+
+
+            /* ==========================================
+               LOAD PROGRESS
+            ========================================== */
+
+            async function loadProgress() {
+
+                try {
+
+                    const response =
+                        await fetch('/api/progress');
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!result.success) {
+
+                        showToast(
+                            result.message ||
+                            'Failed to load work progress.'
+                        );
+
+                        return;
+
+                    }
+
+
+                    progressData =
+                        result.data || [];
+
+
+                    updateStatistics(
+                        progressData
+                    );
+
+
+                    renderProgress(
+                        progressData
+                    );
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    showToast(
+                        'Failed to load work progress.'
+                    );
+
+                }
+
+            }
+
+
+            /* ==========================================
+               LOAD DEPARTMENTS
+            ========================================== */
+
+            async function loadDepartments() {
+
+                const select =
+                    document.getElementById(
+                        'departmentFilter'
+                    );
+
+
+                try {
+
+                    const response =
+                        await fetch('/api/departments');
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!result.success) {
+
+                        return;
+
+                    }
+
+
+                    select.innerHTML =
+                        '<option value="">All Departments</option>';
+
+
+                    result.data.forEach(
+                        department => {
+
+                            const option =
+                                document.createElement(
+                                    'option'
+                                );
+
+
+                            option.value =
+                                department.name;
+
+
+                            option.textContent =
+                                department.name;
+
+
+                            select.appendChild(
+                                option
+                            );
+
+                        }
+                    );
+
+
+                } catch (error) {
+
+                    console.error(error);
+
+                }
+
+            }
+
+
+            /* ==========================================
+               UPDATE STATISTICS
+            ========================================== */
+
+            function updateStatistics(
+                data
+            ) {
+
+                const total =
+                    data.length;
+
+
+                const completed =
+                    data.filter(
+                        item =>
+                            String(item.status)
+                                .toLowerCase() ===
+                            'completed'
+                    ).length;
+
+
+                const inProgress =
+                    data.filter(
+                        item =>
+                            String(item.status)
+                                .toLowerCase() ===
+                            'in progress'
+                    ).length;
+
+
+                const pending =
+                    data.filter(
+                        item =>
+                            String(item.status)
+                                .toLowerCase() ===
+                            'pending'
+                    ).length;
+
+
+                document.getElementById(
+                    'completedCount'
+                ).textContent =
+                    completed;
+
+
+                document.getElementById(
+                    'inProgressCount'
+                ).textContent =
+                    inProgress;
+
+
+                document.getElementById(
+                    'pendingCount'
+                ).textContent =
+                    pending;
+
+
+                document.getElementById(
+                    'completedPercent'
+                ).textContent =
+                    getPercentage(
+                        completed,
+                        total
+                    ) +
+                    '% of total tasks';
+
+
+                document.getElementById(
+                    'inProgressPercent'
+                ).textContent =
+                    getPercentage(
+                        inProgress,
+                        total
+                    ) +
+                    '% of total tasks';
+
+
+                document.getElementById(
+                    'pendingPercent'
+                ).textContent =
+                    getPercentage(
+                        pending,
+                        total
+                    ) +
+                    '% of total tasks';
+
+            }
+
+
+            /* ==========================================
+               RENDER PROGRESS
+            ========================================== */
+
+            function renderProgress(
+                data
+            ) {
+
+                const list =
+                    document.getElementById(
+                        'progressList'
+                    );
+
+
+                if (!data.length) {
+
+                    list.innerHTML = `
+
+            <div class="text-center py-5">
+
+                <i
+                    class="bi bi-clipboard-x"
+                    style="font-size: 32px;"
+                ></i>
+
+                <p class="mt-2 mb-0">
+                    No work assignments found.
+                </p>
+
+            </div>
+
+        `;
+
+                    return;
+
+                }
+
+
+                const grouped =
+                    {};
+
+
+                data.forEach(
+                    item => {
+
+                        const employee =
+                            item.employee ||
+                            'Unassigned';
+
+
+                        if (!grouped[employee]) {
+
+                            grouped[employee] = [];
+
+                        }
+
+
+                        grouped[employee].push(
+                            item
+                        );
+
+                    }
+                );
+
+
+                list.innerHTML =
+                    Object.keys(grouped)
+                        .map(
+                            employeeName => {
+
+                                const tasks =
+                                    grouped[
+                                    employeeName
+                                    ];
+
+
+                                return tasks
+                                    .map(
+                                        task =>
+                                            createProgressItem(
+                                                employeeName,
+                                                tasks,
+                                                task
+                                            )
+                                    )
+                                    .join('');
+
+                            }
+                        )
+                        .join('');
+
+            }
+
+
+            /* ==========================================
+               CREATE PROGRESS ITEM
+            ========================================== */
+
+            function createProgressItem(
+                employeeName,
+                employeeTasks,
+                task
+            ) {
+
+                const initials =
+                    getInitials(
+                        employeeName
+                    );
+
+
+                let progress =
+                    Number(
+                        task.progress
+                    );
+
+
+                if (
+                    Number.isNaN(progress)
+                ) {
+
+                    progress = 0;
+
+                }
+
+
+                progress =
+                    Math.max(
+                        0,
+                        Math.min(
+                            100,
+                            progress
+                        )
+                    );
+
+
+                const status =
+                    task.status ||
+                    'Pending';
+
+
+                const activeTasks =
+                    employeeTasks.filter(
+                        item => {
+
+                            const itemStatus =
+                                String(
+                                    item.status
+                                ).toLowerCase();
+
+
+                            return (
+                                itemStatus ===
+                                'pending' ||
+                                itemStatus ===
+                                'in progress'
+                            );
+
+                        }
+                    ).length;
+
+
+                const statusClass =
+                    getStatusClass(
+                        status
+                    );
+
+
+                return `
+
+        <div
+            class="progress-item progress-row"
+            data-employee="${escapeHtml(employeeName)}"
+            data-department="${escapeHtml(task.department || '')}"
+            data-task="${escapeHtml(task.title || '')}"
+        >
+
+            <div class="person">
+
+                <span class="table-avatar">
+                    ${initials}
+                </span>
+
+                <div>
+
+                    <strong>
+                        ${escapeHtml(employeeName)}
+                    </strong>
+
+                    <small>
+                        ${escapeHtml(task.department || 'No Department')}
+                        •
+                        ${activeTasks}
+                        active task${activeTasks === 1 ? '' : 's'}
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="progress-main">
+
+                <div class="d-flex justify-content-between">
+
+                    <span>
+                        ${escapeHtml(
+                    task.title ||
+                    'Untitled Work'
+                )}
+                    </span>
+
+                    <b>
+                        ${progress}%
+                    </b>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        class="progress-bar"
+                        style="width:${progress}%"
+                    ></div>
+
+                </div>
+
+
+                ${task.deadline
+                        ? `
+                    <small class="text-muted">
+                        Deadline:
+                        ${formatDate(task.deadline)}
+                    </small>
+                    `
+                        : ''
+                    }
+
+            </div>
+
+<div class="d-flex align-items-center gap-2">
+
+    <span class="status ${statusClass}">
+        ${escapeHtml(status)}
+    </span>
+
+    <button
+        type="button"
+        class="btn btn-sm btn-light"
+        onclick="openProgressModal(${task.id}, '${escapeHtml(employeeName)}', '${escapeHtml(task.title || 'Untitled Work')}', ${progress})"
+        title="Update progress"
+    >
+        <i class="bi bi-pencil-square"></i>
+    </button>
+
+</div>
+
+    `;
+
+            }
+
+
+            /* ==========================================
+               FILTER
+            ========================================== */
+
+            function applyFilters() {
+
+                const search =
+                    document.getElementById(
+                        'progressSearch'
+                    ).value
+                        .toLowerCase()
+                        .trim();
+
+
+                const department =
+                    document.getElementById(
+                        'departmentFilter'
+                    ).value;
+
+
+                const filtered =
+                    progressData.filter(
+                        item => {
+
+                            const employee =
+                                String(
+                                    item.employee || ''
+                                ).toLowerCase();
+
+
+                            const title =
+                                String(
+                                    item.title || ''
+                                ).toLowerCase();
+
+
+                            const itemDepartment =
+                                String(
+                                    item.department || ''
+                                );
+
+
+                            const matchesSearch =
+                                !search ||
+                                employee.includes(search) ||
+                                title.includes(search);
+
+
+                            const matchesDepartment =
+                                !department ||
+                                itemDepartment ===
+                                department;
+
+
+                            return (
+                                matchesSearch &&
+                                matchesDepartment
+                            );
+
+                        }
+                    );
+
+
+                renderProgress(
+                    filtered
+                );
+
+            }
+
+
+            /* ==========================================
+               HELPERS
+            ========================================== */
+
+            function getPercentage(
+                value,
+                total
+            ) {
+
+                if (!total) {
+
+                    return 0;
+
+                }
+
+
+                return Math.round(
+                    (
+                        value /
+                        total
+                    ) * 1000
+                ) / 10;
+
+            }
+
+
+            function getInitials(
+                name
+            ) {
+
+                return String(name || 'U')
+                    .split(' ')
+                    .filter(Boolean)
+                    .map(
+                        part =>
+                            part.charAt(0)
+                    )
+                    .slice(0, 2)
+                    .join('')
+                    .toUpperCase();
+
+            }
+
+
+            function getStatusClass(
+                status
+            ) {
+
+                const value =
+                    String(status)
+                        .toLowerCase();
+
+
+                if (
+                    value ===
+                    'completed'
+                ) {
+
+                    return 'green-status';
+
+                }
+
+
+                if (
+                    value ===
+                    'in progress'
+                ) {
+
+                    return 'orange-status';
+
+                }
+
+
+                if (
+                    value ===
+                    'pending'
+                ) {
+
+                    return 'blue-status';
+
+                }
+
+
+                return 'yellow-status';
+
+            }
+
+
+            function formatDate(
+                value
+            ) {
+
+                if (!value) {
+
+                    return '';
+
+                }
+
+
+                const date =
+                    new Date(value);
+
+
+                if (
+                    Number.isNaN(
+                        date.getTime()
+                    )
+                ) {
+
+                    return value;
+
+                }
+
+
+                return date.toLocaleDateString(
+                    'en-IN'
+                );
+
+            }
+
+
+            function escapeHtml(
+                value
+            ) {
+
+                return String(
+                    value ?? ''
+                )
+                    .replace(
+                        /&/g,
+                        '&amp;'
+                    )
+                    .replace(
+                        /</g,
+                        '&lt;'
+                    )
+                    .replace(
+                        />/g,
+                        '&gt;'
+                    )
+                    .replace(
+                        /"/g,
+                        '&quot;'
+                    )
+                    .replace(
+                        /'/g,
+                        '&#039;'
+                    );
+
+            }
+
+
+            /* ==========================================
+               EVENTS
+            ========================================== */
+
+            document
+                .getElementById(
+                    'progressSearch'
+                )
+                .addEventListener(
+                    'input',
+                    applyFilters
+                );
+
+
+            document
+                .getElementById(
+                    'departmentFilter'
+                )
+                .addEventListener(
+                    'change',
+                    applyFilters
+                );
+
+
+            /* ==========================================
+               INITIAL LOAD
+            ========================================== */
+
+
+            /* ==========================================
+               UPDATE PROGRESS
+            ========================================== */
+
+            function openProgressModal(
+                id,
+                employee,
+                task,
+                progress
+            ) {
+
+                document.getElementById(
+                    'progressWorkId'
+                ).value = id;
+
+
+                document.getElementById(
+                    'progressEmployee'
+                ).value = employee;
+
+
+                document.getElementById(
+                    'progressTask'
+                ).value = task;
+
+
+                document.getElementById(
+                    'progressValue'
+                ).value = progress;
+
+
+                updateProgressPreview();
+
+
+                const modal =
+                    new bootstrap.Modal(
+                        document.getElementById(
+                            'progressModal'
+                        )
+                    );
+
+
+                modal.show();
+
+            }
+
+
+            /* Progress preview */
+
+            function updateProgressPreview() {
+
+                let value =
+                    Number(
+                        document.getElementById(
+                            'progressValue'
+                        ).value
+                    );
+
+
+                if (Number.isNaN(value)) {
+
+                    value = 0;
+
+                }
+
+
+                value =
+                    Math.max(
+                        0,
+                        Math.min(
+                            100,
+                            value
+                        )
+                    );
+
+
+                document.getElementById(
+                    'progressPreview'
+                ).style.width =
+                    value + '%';
+
+            }
+
+
+            /* Save progress */
+
+            async function saveProgress() {
+
+                const id =
+                    document.getElementById(
+                        'progressWorkId'
+                    ).value;
+
+
+                let progress =
+                    Number(
+                        document.getElementById(
+                            'progressValue'
+                        ).value
+                    );
+
+
+                if (
+                    Number.isNaN(progress) ||
+                    progress < 0 ||
+                    progress > 100
+                ) {
+
+                    showToast(
+                        'Progress must be between 0 and 100.'
+                    );
+
+                    return;
+
+                }
+
+
+                try {
+
+                    const response =
+                        await fetch(
+                            '/api/progress/' + id,
+                            {
+                                method: 'PUT',
+
+                                headers: {
+                                    'Content-Type':
+                                        'application/json'
+                                },
+
+                                body: JSON.stringify({
+                                    progress: progress
+                                })
+                            }
+                        );
+
+
+                    const result =
+                        await response.json();
+
+
+                    if (!result.success) {
+
+                        showToast(
+                            result.message ||
+                            'Failed to update progress.'
+                        );
+
+                        return;
+
+                    }
+
+
+                    showToast(
+                        'Progress updated successfully.'
+                    );
+
+
+                    bootstrap.Modal
+                        .getInstance(
+                            document.getElementById(
+                                'progressModal'
+                            )
+                        )
+                        .hide();
+
+
+                    await loadProgress();
+
+                } catch (error) {
+
+                    console.error(error);
+
+                    showToast(
+                        'Request failed.'
+                    );
+
+                }
+
+            }
+
+
+            /* Progress preview while typing */
+
+            document
+                .getElementById(
+                    'progressValue'
+                )
+                .addEventListener(
+                    'input',
+                    updateProgressPreview
+                );
+
+
+
+
+            document.addEventListener(
+                'DOMContentLoaded',
+                async function () {
+
+                    await loadDepartments();
+
+                    await loadProgress();
+
+                }
+            );
+
+        </script>
+
+</body>
+
+</html>

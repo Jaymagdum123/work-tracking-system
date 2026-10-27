@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WorkTrack | Reports</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/style.css">
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-mark">
+                    <i class="bi bi-buildings"></i>
+                </div>
+
+                <div>
+                    <strong>WorkTrack</strong>
+                    <small>Manufacturing OS</small>
+                </div>
+
+            </div>
+
+
+            <div class="nav-label">
+                MAIN
+            </div>
+
+
+            <nav>
+
+                <a class="nav-link" href="dashboard.html">
+                    <i class="bi bi-grid-1x2"></i>
+                    Dashboard
+                </a>
+
+
+                <a class="nav-link" href="employees.html">
+                    <i class="bi bi-people"></i>
+                    Employees
+                </a>
+
+
+                <a class="nav-link" href="departments.html">
+                    <i class="bi bi-diagram-3"></i>
+                    Departments
+                </a>
+
+
+                <a class="nav-link" href="work.html">
+                    <i class="bi bi-clipboard-check"></i>
+                    Work Assignment
+                </a>
+
+
+                <a class="nav-link" href="progress.html">
+                    <i class="bi bi-bar-chart-line"></i>
+                    Work Progress
+                </a>
+
+
+                <a class="nav-link" href="attendance.html">
+                    <i class="bi bi-calendar2-check"></i>
+                    Attendance
+                </a>
+
+
+                <a class="nav-link" href="production.html">
+                    <i class="bi bi-box-seam"></i>
+                    Production
+                </a>
+
+
+                <a class="nav-link active" href="reports.html">
+                    <i class="bi bi-file-earmark-bar-graph"></i>
+                    Reports
+                </a>
+
+            </nav>
+
+
+            <div class="nav-label mt-3">
+                ACCOUNT
+            </div>
+
+
+            <nav>
+
+                <a class="nav-link" href="profile.html">
+                    <i class="bi bi-person-circle"></i>
+                    My Profile
+                </a>
+
+
+                <a class="nav-link logout" href="index.html" id="logoutBtn">
+                    <i class="bi bi-box-arrow-left"></i>
+                    Logout
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="mini-avatar">
+                    JM
+                </div>
+
+                <div>
+
+                    <strong>
+                        Jay Maruti Magdum
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <main class="main">
+
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <button class="icon-btn d-lg-none" id="menuBtn" type="button">
+                    <i class="bi bi-list"></i>
+                </button>
+
+
+                <div>
+
+                    <h5 class="mb-0">
+                        Reports
+                    </h5>
+
+                    <span class="top-subtitle">
+                        Generate and review operational reports.
+                    </span>
+
+                </div>
+
+
+                <div class="top-actions">
+
+                    <button class="icon-btn" type="button" onclick="showToast('No new notifications')">
+                        <i class="bi bi-bell"></i>
+                        <span class="notification-dot"></span>
+                    </button>
+
+
+                    <div class="user-menu">
+
+                        <div class="avatar">
+                            JM
+                        </div>
+
+                        <div class="d-none d-md-block">
+
+                            <strong>
+                                Jay Magdum
+                            </strong>
+
+                            <small>
+                                Administrator
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- CONTENT -->
+
+            <section class="content">
+
+
+                <!-- PAGE TITLE -->
+
+                <div class="page-title">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            WORKTRACK
+                        </span>
+
+                        <h1>
+                            Reports
+                        </h1>
+
+                        <p class="muted">
+                            Generate and review operational reports.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REPORT CARDS -->
+
+                <div class="report-grid">
+
+
+                    <!-- ATTENDANCE -->
+
+                    <div class="report-card">
+
+                        <div class="report-icon blue">
+                            <i class="bi bi-calendar2-check"></i>
+                        </div>
+
+                        <h5>
+                            Attendance Report
+                        </h5>
+
+                        <p>
+                            Daily, weekly or monthly employee attendance.
+                        </p>
+
+                        <button type="button" class="btn btn-outline-primary w-100"
+                            onclick="selectReport('attendance')">
+                            Generate Report
+                        </button>
+
+                    </div>
+
+
+                    <!-- WORK -->
+
+                    <div class="report-card">
+
+                        <div class="report-icon purple">
+                            <i class="bi bi-clipboard-data"></i>
+                        </div>
+
+                        <h5>
+                            Work Report
+                        </h5>
+
+                        <p>
+                            Analyze assigned, completed and pending tasks.
+                        </p>
+
+                        <button type="button" class="btn btn-outline-primary w-100" onclick="selectReport('work')">
+                            Generate Report
+                        </button>
+
+                    </div>
+
+
+                    <!-- PRODUCTION -->
+
+                    <div class="report-card">
+
+                        <div class="report-icon orange">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+
+                        <h5>
+                            Production Report
+                        </h5>
+
+                        <p>
+                            Review output, good units and defect rates.
+                        </p>
+
+                        <button type="button" class="btn btn-outline-primary w-100"
+                            onclick="selectReport('production')">
+                            Generate Report
+                        </button>
+
+                    </div>
+
+
+                    <!-- EMPLOYEE -->
+
+                    <div class="report-card">
+
+                        <div class="report-icon green">
+                            <i class="bi bi-people"></i>
+                        </div>
+
+                        <h5>
+                            Employee Report
+                        </h5>
+
+                        <p>
+                            View employee details and department summaries.
+                        </p>
+
+                        <button type="button" class="btn btn-outline-primary w-100" onclick="selectReport('employee')">
+                            Generate Report
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REPORT PREVIEW -->
+
+                <div class="panel mt-3">
+
+                    <div class="panel-head">
+
+                        <div>
+
+                            <h5>
+                                Report Preview
+                            </h5>
+
+                            <p>
+                                Choose filters to preview your report.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row g-3">
+
+
+                        <!-- REPORT TYPE -->
+
+                        <div class="col-md-4">
+
+                            <label class="form-label" for="reportType">
+                                Report Type
+                            </label>
+
+                            <select class="form-select" id="reportType">
+
+                                <option value="production">
+                                    Production Report
+                                </option>
+
+                                <option value="attendance">
+                                    Attendance Report
+                                </option>
+
+                                <option value="work">
+                                    Work Report
+                                </option>
+
+                                <option value="employee">
+                                    Employee Report
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- FROM -->
+
+                        <div class="col-md-3">
+
+                            <label class="form-label" for="reportFrom">
+                                From
+                            </label>
+
+                            <input type="date" class="form-control" id="reportFrom">
+
+                        </div>
+
+
+                        <!-- TO -->
+
+                        <div class="col-md-3">
+
+                            <label class="form-label" for="reportTo">
+                                To
+                            </label>
+
+                            <input type="date" class="form-control" id="reportTo">
+
+                        </div>
+
+
+                        <!-- PREVIEW BUTTON -->
+
+                        <div class="col-md-2 d-flex align-items-end">
+
+                            <button type="button" class="btn btn-primary w-100" id="previewReportBtn">
+                                Preview
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RESULTS -->
+
+                <div class="panel mt-3" id="reportResultsPanel" style="display:none;">
+
+                    <div class="panel-head">
+
+                        <div>
+
+                            <h5 id="reportResultTitle">
+                                Report Results
+                            </h5>
+
+                            <p id="reportResultCount">
+                                0 records
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table">
+
+                            <thead id="reportTableHead">
+                            </thead>
+
+
+                            <tbody id="reportTableBody">
+
+                                <tr>
+
+                                    <td colspan="10" class="text-center text-muted py-4">
+                                        No report data.
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- TOAST -->
+
+    <div id="toastBox" class="toast-container position-fixed bottom-0 end-0 p-3"></div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="assets/script.js"></script>
+
+
+    <script>
+
+        const REPORT_API = '/api';
+
+
+        function reportEscape(value) {
+
+            return String(value ?? '')
+                .replace(/[&<>'"]/g, function (character) {
+
+                    return {
+                        '&': '&amp;',
+                        '<': '&lt;',
+                        '>': '&gt;',
+                        "'": '&#39;',
+                        '"': '&quot;'
+                    }[character];
+
+                });
+
+        }
+
+
+        async function reportRequest(url) {
+
+            const response =
+                await fetch(
+                    REPORT_API + url,
+                    {
+                        method: 'GET',
+                        credentials: 'same-origin'
+                    }
+                );
+
+
+            let data = {};
+
+            try {
+
+                data = await response.json();
+
+            } catch (error) {
+
+                data = {};
+
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.message ||
+                    'Unable to generate report.'
+                );
+
+            }
+
+
+            return data;
+
+        }
+
+
+        function selectReport(type) {
+
+            const reportType =
+                document.getElementById(
+                    'reportType'
+                );
+
+
+            reportType.value = type;
+
+
+            const previewPanel =
+                document.getElementById(
+                    'reportResultsPanel'
+                );
+
+
+            previewPanel.style.display = 'none';
+
+
+            document
+                .getElementById('reportType')
+                .scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+
+        }
+
+
+        function formatReportDate(value) {
+
+            if (!value) {
+                return '';
+            }
+
+
+            const date =
+                new Date(value);
+
+
+            if (isNaN(date.getTime())) {
+
+                return value;
+
+            }
+
+
+            return date.toLocaleDateString(
+                'en-GB',
+                {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric'
+                }
+            );
+
+        }
+
+
+        function reportTitle(type) {
+
+            if (type === 'attendance') {
+                return 'Attendance Report';
+            }
+
+            if (type === 'work') {
+                return 'Work Report';
+            }
+
+            if (type === 'employee') {
+                return 'Employee Report';
+            }
+
+            return 'Production Report';
+
+        }
+
+
+        function buildReportTable(type, rows) {
+
+            const head =
+                document.getElementById(
+                    'reportTableHead'
+                );
+
+
+            const body =
+                document.getElementById(
+                    'reportTableBody'
+                );
+
+
+            if (!rows.length) {
+
+                head.innerHTML = '';
+
+                body.innerHTML = `
+            <tr>
+                <td
+                    colspan="10"
+                    class="text-center text-muted py-4"
+                >
+                    No records found for the selected report.
+                </td>
+            </tr>
+        `;
+
+                return;
+
+            }
+
+
+            if (type === 'production') {
+
+                head.innerHTML = `
+            <tr>
+                <th>Date</th>
+                <th>Product</th>
+                <th>Department</th>
+                <th>Quantity</th>
+                <th>Good Units</th>
+                <th>Defective</th>
+                <th>Status</th>
+            </tr>
+        `;
+
+
+                body.innerHTML =
+                    rows.map(function (row) {
+
+                        return `
+                    <tr>
+
+                        <td>
+                            ${formatReportDate(
+                            row.production_date
+                        )}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ${reportEscape(
+                            row.product
+                        )}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.department
+                        )}
+                        </td>
+
+                        <td>
+                            ${row.quantity ?? 0}
+                        </td>
+
+                        <td>
+                            ${row.good_units ?? 0}
+                        </td>
+
+                        <td>
+                            ${row.defective ?? 0}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.status
+                        )}
+                        </td>
+
+                    </tr>
+                `;
+
+                    }).join('');
+
+                return;
+
+            }
+
+
+            if (type === 'attendance') {
+
+                head.innerHTML = `
+            <tr>
+                <th>Date</th>
+                <th>Employee ID</th>
+                <th>Employee</th>
+                <th>Department</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Status</th>
+            </tr>
+        `;
+
+
+                body.innerHTML =
+                    rows.map(function (row) {
+
+                        return `
+                    <tr>
+
+                        <td>
+                            ${formatReportDate(
+                            row.attendance_date
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.employee_code
+                        )}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ${reportEscape(
+                            row.full_name
+                        )}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.department
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.check_in || '-'
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.check_out || '-'
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.status
+                        )}
+                        </td>
+
+                    </tr>
+                `;
+
+                    }).join('');
+
+                return;
+
+            }
+
+
+            if (type === 'work') {
+
+                head.innerHTML = `
+            <tr>
+                <th>Work</th>
+                <th>Employee</th>
+                <th>Department</th>
+                <th>Deadline</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Progress</th>
+            </tr>
+        `;
+
+
+                body.innerHTML =
+                    rows.map(function (row) {
+
+                        return `
+                    <tr>
+
+                        <td>
+                            <strong>
+                                ${reportEscape(
+                            row.title
+                        )}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.employee || '-'
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.department || '-'
+                        )}
+                        </td>
+
+                        <td>
+                            ${formatReportDate(
+                            row.deadline
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.priority
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.status
+                        )}
+                        </td>
+
+                        <td>
+                            ${row.progress ?? 0}%
+                        </td>
+
+                    </tr>
+                `;
+
+                    }).join('');
+
+                return;
+
+            }
+
+
+            if (type === 'employee') {
+
+                head.innerHTML = `
+            <tr>
+                <th>Employee ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Role</th>
+                <th>Phone</th>
+                <th>Status</th>
+            </tr>
+        `;
+
+
+                body.innerHTML =
+                    rows.map(function (row) {
+
+                        return `
+                    <tr>
+
+                        <td>
+                            ${reportEscape(
+                            row.employee_code
+                        )}
+                        </td>
+
+                        <td>
+                            <strong>
+                                ${reportEscape(
+                            row.full_name
+                        )}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.email || '-'
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.department
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.role
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.phone
+                        )}
+                        </td>
+
+                        <td>
+                            ${reportEscape(
+                            row.status
+                        )}
+                        </td>
+
+                    </tr>
+                `;
+
+                    }).join('');
+
+            }
+
+        }
+
+
+        async function generateReport() {
+
+            const type =
+                document.getElementById(
+                    'reportType'
+                ).value;
+
+
+            const from =
+                document.getElementById(
+                    'reportFrom'
+                ).value;
+
+
+            const to =
+                document.getElementById(
+                    'reportTo'
+                ).value;
+
+
+            if (
+                from &&
+                to &&
+                from > to
+            ) {
+
+                showToast(
+                    'From date cannot be after To date.'
+                );
+
+                return;
+
+            }
+
+
+            let url =
+                '/reports?type=' +
+                encodeURIComponent(type);
+
+
+            if (from) {
+
+                url +=
+                    '&from=' +
+                    encodeURIComponent(from);
+
+            }
+
+
+            if (to) {
+
+                url +=
+                    '&to=' +
+                    encodeURIComponent(to);
+
+            }
+
+
+            try {
+
+                const response =
+                    await reportRequest(url);
+
+
+                const rows =
+                    response.data || [];
+
+
+                document.getElementById(
+                    'reportResultsPanel'
+                ).style.display = 'block';
+
+
+                document.getElementById(
+                    'reportResultTitle'
+                ).textContent =
+                    reportTitle(type);
+
+
+                document.getElementById(
+                    'reportResultCount'
+                ).textContent =
+                    rows.length +
+                    (
+                        rows.length === 1
+                            ? ' record'
+                            : ' records'
+                    );
+
+
+                buildReportTable(
+                    type,
+                    rows
+                );
+
+
+                showToast(
+                    reportTitle(type) +
+                    ' generated successfully.'
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    'REPORT ERROR:',
+                    error
+                );
+
+
+                showToast(
+                    error.message ||
+                    'Failed to generate report.'
+                );
+
+            }
+
+        }
+
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            function () {
+
+
+                const today =
+                    new Date();
+
+
+                const firstDay =
+                    new Date(
+                        today.getFullYear(),
+                        today.getMonth(),
+                        1
+                    );
+
+
+                document.getElementById(
+                    'reportFrom'
+                ).value =
+                    firstDay
+                        .toISOString()
+                        .split('T')[0];
+
+
+                document.getElementById(
+                    'reportTo'
+                ).value =
+                    today
+                        .toISOString()
+                        .split('T')[0];
+
+
+                document.getElementById(
+                    'previewReportBtn'
+                ).addEventListener(
+                    'click',
+                    generateReport
+                );
+
+
+                const logoutButton =
+                    document.getElementById(
+                        'logoutBtn'
+                    );
+
+
+                if (logoutButton) {
+
+                    logoutButton.addEventListener(
+                        'click',
+                        function (event) {
+
+                            event.preventDefault();
+
+                            if (
+                                typeof logout ===
+                                'function'
+                            ) {
+
+                                logout();
+
+                            } else {
+
+                                window.location.href =
+                                    'index.html';
+
+                            }
+
+                        }
+                    );
+
+                }
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
